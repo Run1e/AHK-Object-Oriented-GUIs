@@ -6,10 +6,16 @@
 Welcome to AHK Object Oriented GUIs's documentation!
 ====================================================
 
+AHK-OOG is a library makes it easy to work with GUIs in AutoHotkey in an object-oriented fashion.
+
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
-
+   :caption: Table of Contents
+   
+   getting-started
+   documentation
+   examples
+   about
 
 
 Indices and tables

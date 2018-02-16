@@ -92,7 +92,7 @@ Class GuiBase {
 		}
 	}
 	
-	Print(text) {
+	Print(Text) {
 		this.Debug.Call(text)
 	}
 	

@@ -15,7 +15,7 @@
 	}
 	
 	__Delete() {
-		p(type(this) " released")
+		;p(type(this) " released")
 	}
 	
 	Pos {

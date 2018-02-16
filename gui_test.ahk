@@ -4,11 +4,19 @@ SetBatchLines -1
 #Include Debug.ahk
 Debug.Clear()
 
-#Include gui\Gui.ahk
+#Include gui\GuiBase.ahk
 
+MyGui := new GuiBase("Title", "-MinimizeBox")
+MyGui.AddButton("w200", "Button Text")
+MyGui.Show()
+
+
+/*
 global MyGui := new TestGui("test gui", "+Resize +Border -MinimizeBox", func("p"))
+global MyGui2 := new TestGui("test gui", "+Resize +Border -MinimizeBox", func("p"))
 
 MyGui.Show()
+MyGui2.Show()
 
 Exit() {
 	MyGui.Destroy()
