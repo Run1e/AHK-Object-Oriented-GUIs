@@ -6,86 +6,160 @@ Documentation
 GuiBase
 --------
 
-.. class:: GuiBase
-
-The ``GuiBase`` class is the main class that represents a GUI.
+The :class:`GuiBase` class is the main class that represents a GUI.
 
 It can either be instantiated directly, or you can extend upon it for more complicated GUIs. See the :ref:`examples`.
-
-   .. currentmodule:: GuiBase
 
 Library info
 ~~~~~~~~~~~~
 
-.. data:: __Version
+.. data:: GuiBase.__Version
 
-   Contains the current version of the library.
-
-Attributes and properties
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. data:: Title
+   Contains the installed version of the library.
    
-   Get or set the window title.
+
    
-.. data:: hwnd
+.. class:: GuiBase
 
-   Contains the window handle.
+  Represents a GUI object.
+
+  .. data:: Title
    
-.. attribute:: ahk_id
-
-   Shorthand for ``"ahk_id" . hwnd``
+     Get or set the window title.
    
-.. data:: Visible
+  .. data:: hwnd
 
-   Bool indicating whether the window is visible or hidden.
+     Contains the window handle.
    
-.. data:: BackgroundColor
+  .. attribute:: ahk_id
 
-   Get or set the background color.
+     Shorthand for ``"ahk_id" . hwnd``
    
-.. data:: ControlColor
+  .. data:: Visible
 
-   Get or set the control (foreground) color.
+     Bool indicating whether the window is visible or hidden.
    
-.. data:: Position
+  .. data:: BackgroundColor
 
-   Instance of ``GuiBase.WindowPosition`` representing the position and size of the GUI window.
-
-Meta-functions
-~~~~~~~~~~~~~~
-
-.. function:: __New(Title := "AutoHotkey Window", Options := "")
-
-   Creates a new instance of the class. Should be called by the ``new`` keyword, not directly.
-
-   :param Title: Title of the window
-   :param Options: Options string
-   :return: ``GuiBase`` instance
+     Get or set the background color.
    
-Methods
-~~~~~~~
-   
-.. function:: Show(Options := "")
+  .. data:: ControlColor
 
-   Shows the GUI window.
+     Get or set the control (foreground) color.
    
-   :param Options: Options string
+  .. data:: Controls
+  
+     An array of all control instances the GUI instance has created.
    
-.. function:: Hide(Options := "")
+  .. data:: Position
 
-   Hides the GUI window.
+     Instance of :class:`GuiBase.WindowPosition` representing the position and size of the GUI window.
 
-   :param Options: Options string
+  .. function:: __New(Title := "AutoHotkey Window", Options := "")
+
+     Creates a new instance of the class.
+
+     .. note::
+	   You shouldn't call this meta-function directly, but use the ``new`` keyword.
+	   See the AutoHotkey documentation on `constructing and deconstructing objects <https://autohotkey.com/docs/Objects.htm#Custom_NewDelete>`_.
+
+     :param Title: Title of the window.
+     :param Options: Options string.
+     :return: A :class:`GuiBase` instance.
    
-.. function:: Destroy(Options := "")
+  .. function:: Show(Options := "")
 
-   Destroys the GUI, and all ``GuiBase.ControlType`` instances related to it. All references should be cleared after running this method. It's a good idea to clear all references to the instance so it can be freed.
+     Shows the GUI window.
    
-.. function:: Print(Text)
-
-   Calls the function reference in ``Instance.Debug`` with ``Text``.
+     :param Options: Options string.
    
-   Essentially a shorthand for ``Instance.Debug.Call(Text)``
+  .. function:: Hide(Options := "")
 
-   :param Text: Any string
+     Hides the GUI window.
+
+     :param Options: Options string.
+   
+  .. function:: Destroy(Options := "")
+
+     Destroys the GUI, and all ``GuiBase.ControlType`` instances related to it. 
+	All references should be cleared after running this method. 
+	It's a good idea to clear all references you have lying around so it can be freed properly.
+  
+.. currentmodule:: GuiBase  
+  
+ControlType
+--------
+   
+.. class:: ControlType
+
+  Represents a GUI control object.
+
+  .. data:: Gui
+   
+     Reference to the GUI instance that created this instance.
+	
+  .. data:: hwnd
+  
+     Handle of the control.
+	
+  .. data:: Position
+  
+     :class:`GuiBase.ControlPosition` instance.
+
+  .. function:: __New(Gui, Options := "", Text := "")
+
+     Creates a new control instance.
+	
+	.. note::
+	   You shouldn't have to call this yourself, instead use the methods in :class:`GuiBase` to add controls.
+
+     :param Gui: The GUI instance that created this control.
+     :param Options: Options string.
+	:param Text: Inital text contents of the control, if applicable.
+     :return: An indirect reference to the control instance.
+	
+  .. function:: Options(Options)
+
+     Change the options/settings of the control.
+	
+	:param Options: Options string.
+	
+  .. function:: Control(Command := "", Options := "")
+
+     Calls the `GuiControl <https://autohotkey.com/docs/commands/GuiControl.htm>`_ command.
+	
+	:param Command: The action to do. See documentation link above.
+	:param Options: `Param3` in the documentation link above.
+	
+  .. function:: OnEvent(Func := "")
+
+     Makes the control call ``Func`` when an event happens.
+	
+     :param Func: Function reference or boundfunc to call when events happen.
+	
+CommonControlType
+--------
+	
+.. class:: CommonControlType
+
+   This class extends on :class:`GuiBase.ControlType`
+
+   Represents a control with a text field, such as:
+   
+   :class:`GuiBase.TextControl`
+   
+   :class:`GuiBase.ButtonControl`
+   
+   :class:`GuiBase.EditControl`
+   
+  .. data:: Text
+     
+	Get or set the contents of the control.
+	
+  .. function:: GetText()
+  
+     :return: The text contents of the control.
+	
+  .. function:: SetText(Text)
+  
+     :param Text: New contents of the control.
