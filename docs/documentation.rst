@@ -10,14 +10,15 @@ The :class:`GuiBase` class is the main class that represents a GUI.
 
 It can either be instantiated directly, or you can extend upon it for more complicated GUIs. See the :ref:`examples`.
 
-Library info
-~~~~~~~~~~~~
 
 .. data:: GuiBase.__Version
 
    Contains the installed version of the library.
    
+.. function:: GuiBase.GetGui(hwnd)
 
+   :param hwnd: GUI hwnd.
+   :return: A :class:`GuiBase` instance, if found.
    
 .. class:: GuiBase
 
@@ -31,7 +32,7 @@ Library info
 
      Contains the window handle.
    
-  .. attribute:: ahk_id
+  .. data:: ahk_id
 
      Shorthand for ``"ahk_id" . hwnd``
    
@@ -81,12 +82,112 @@ Library info
    
   .. function:: Destroy(Options := "")
 
-     Destroys the GUI, and all ``GuiBase.ControlType`` instances related to it. 
-	All references should be cleared after running this method. 
-	It's a good idea to clear all references you have lying around so it can be freed properly.
+     Destroys the GUI, and all ``GuiBase.ControlType`` instances related to it. All references should be cleared after running this method. 
+     It's a good idea to clear all references you have lying around so it can be freed properly.
+	
+  .. function:: Options(Options)
+
+     Change the options of the GUI.
+
+     :param Options: Options string.
+	
+  .. function:: SetDefault()
+
+     Sets this GUI as the default GUI.
+	
+  .. function:: SetDefaultListView(ListView)
+
+     Sets the default ListView control.
+
+     :param ListView: :class:`GuiBase.ListViewControl` instance.
+	
+  .. function:: Control(Command := "", Control := "", ControlParams := "")
+
+     Calls GuiControl.
+
+     :param Command: The GuiControl command to perform.
+	:param Control: The control instance to apply the command on.
+	:param ControlParams: The parameters for the command.
+	
+  .. function:: Margins(x := "", y := "")
+
+     Sets the control spacing margins for newly created controls.
+
+     :param x: Horizontal spacing.
+	:param y: Vertical spacing.
+	
+  .. function:: Font(Options := "", Font := "")
+
+     Changes the font for newly created controls.
+
+     :param Options: Options string.
+	:param Font: Font name.
+	
+  .. function:: Focus()
+
+     Focuses the GUI window.
+	
+  .. function:: Enable()
+
+     Enables the GUI window if previously disabled.
+	
+  .. function:: Disable()
+
+     Disables the GUI window if previously enabled.
+	
+  .. function:: SetIcon(Icon)
+
+     Changes the GUI window icon.
+	
+	:param Icon: Path to an icon file.
+	
+  .. function:: AddText(Options := "", Text := "")
   
-.. currentmodule:: GuiBase  
+     Adds a text control.
+	
+	:param Options: Options string.
+	:param Text: Text contents of the control.
+	:return: :class:`GuiBase.TextControl` instance.
+	
+  .. function:: AddButton(Options := "", Text := "")
   
+     Adds a text control.
+	
+	:param Options: Options string.
+	:param Text: Text contents of the control.
+	:return: :class:`GuiBase.ButtonControl` instance.
+	
+  .. function:: AddEdit(Options := "", Text := "")
+  
+     Adds an edit control.
+	
+	:param Options: Options string.
+	:param Text: Text contents of the control.
+	:return: :class:`GuiBase.EditControl` instance.
+	
+  .. function:: AddListView(Options := "", Headers := "")
+  
+     Adds a ListView control.
+	
+	:param Options: Options string.
+	:param Headers: Either an array of header names, or a string of header names separated by ``|`` (pipe).
+	:return: :class:`GuiBase.ListViewControl` instance.
+	
+  .. function:: AddStatusBar(Options := "", Text := "")
+  
+     Adds a statusbar.
+	
+	:param Options: Options string.
+	:param Text: Text contents of the control.
+	:return: :class:`GuiBase.StatusBarControl` instance.
+  
+.. currentmodule:: GuiBase
+
+
+
+
+
+
 ControlType
 --------
    
@@ -138,11 +239,11 @@ ControlType
      :param Func: Function reference or boundfunc to call when events happen.
 	
 CommonControlType
---------
+-----------------
 	
 .. class:: CommonControlType
 
-   This class extends on :class:`GuiBase.ControlType`
+   This class extends :class:`GuiBase.ControlType`
 
    Represents a control with a text field, such as:
    
@@ -163,3 +264,62 @@ CommonControlType
   .. function:: SetText(Text)
   
      :param Text: New contents of the control.
+	
+TextControl
+-----------
+
+.. class:: TextControl
+
+   This class extends :class:`GuiBase.CommonControlType`
+   
+ButtonControl
+-----------
+
+.. class:: ButtonControl
+
+   This class extends :class:`GuiBase.CommonControlType`
+   
+EditControl
+-----------
+
+.. class:: EditControl
+
+   This class extends :class:`GuiBase.CommonControlType`
+   
+ListViewControl
+-----------
+
+.. class:: ListViewControl
+
+  This class extends :class:`GuiBase.ControlType`
+
+  .. function:: Add(Options := "", Fields*)
+
+     Adds a row to the listview.
+
+     :param Options: Options string.
+     :param Fields*: Variadic parameter array of field contents.
+
+  .. function:: Insert(Row, Options := "", Fields*)
+
+    Identical to ``Add()`` but with an additional parameter ``Row``
+
+     :param Row: Which row to insert the new row at.
+	
+  .. function:: GetCount(Option := "")
+
+     Gets the amount of rows 
+
+     :param Row: Which row to insert the new row at.
+	
+  .. function:: Insert(Row, Options := "", Fields*)
+
+    Identical to ``Add()`` but with an additional parameter ``Row``
+
+     :param Row: Which row to insert the new row at.
+	
+  .. function:: Insert(Row, Options := "", Fields*)
+
+    Identical to ``Add()`` but with an additional parameter ``Row``
+
+     :param Row: Which row to insert the new row at.

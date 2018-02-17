@@ -74,28 +74,6 @@ Class GuiBase {
 		this.Print(this.__Class " released")
 	}
 	
-	MethodOverrideCheck() {
-		Namespace := []
-		
-		Bases := []
-		Bases.Push(base := this.base)
-		while (base := base.base)
-			Bases.InsertAt(1, base)
-		
-		for Depth, Obj in Bases {
-			for Key in Obj {
-				if Namespace.HasKey(Key)
-					throw "Class '" Obj.__Class "' is overwriting the method '" Key "' from the Gui base class."
-				else if (Depth = 1) && !(Key ~= "^(__Class|__Delete|Close|Escape)$")
-					Namespace[Key] := ""
-			}
-		}
-	}
-	
-	Print(Text) {
-		this.Debug.Call(text)
-	}
-	
 	Show(Options := "") {
 		Gui % this.hwnd ":Show", % Options, % this.TitleValue
 	}
@@ -106,7 +84,7 @@ Class GuiBase {
 	
 	Destroy() {
 		try Gui % this.hwnd ":Destroy"
-			
+		
 		for Index, Control in this.Controls {
 			Control.Gui := ""
 			Control.Position := ""
@@ -117,6 +95,14 @@ Class GuiBase {
 		GuiBase.Instances.Delete(this.hwnd)
 	}
 	
+	Options(Options) {
+		Gui % this.hwnd ":" Options
+	}
+	
+	GetControl(hwnd) {
+		return this.Controls[hwnd]
+	}
+	
 	SetDefault() {
 		if (A_DefaultGui != this.hwnd)
 			Gui % this.hwnd ":Default"
@@ -125,10 +111,6 @@ Class GuiBase {
 	SetDefaultListView(ListView) {
 		if (A_DefaultListView != ListView.hwnd)
 			Gui % this.hwnd ":ListView", % ListView.hwnd
-	}
-	
-	GetControl(hwnd) {
-		return this.Controls[hwnd]
 	}
 	
 	DropFilesToggle(Enable) {
@@ -151,12 +133,12 @@ Class GuiBase {
 		WinActivate % this.ahk_id
 	}
 	
-	Disable() {
-		Gui % this.hwnd ":+Disabled"
-	}
-	
 	Enable() {
 		Gui % this.hwnd ":-Disabled"
+	}
+	
+	Disable() {
+		Gui % this.hwnd ":+Disabled"
 	}
 	
 	SetIcon(Icon) {
@@ -169,15 +151,15 @@ Class GuiBase {
 	; ADD CONTROLS
 	
 	AddText(Options := "", Text := "") {
-		return this.AddControl("Text", Options, Text)
-	}
-	
-	AddEdit(Options := "", Text := "") {
-		return this.AddControl("Edit", Options, Text)
+		return this.AddControl(GuiBase.TextControl, Options, Text)
 	}
 	
 	AddButton(Options := "", Text := "") {
-		return this.AddControl("Button", Options, Text)
+		return this.AddControl(GuiBase.ButtonControl, Options, Text)
+	}
+	
+	AddEdit(Options := "", Text := "") {
+		return this.AddControl(GuiBase.EditControl, Options, Text)
 	}
 	
 	AddListView(Options := "", Headers := "") {
@@ -187,15 +169,14 @@ Class GuiBase {
 			HeaderText := SubStr(HeaderText, 2)
 		} else
 			HeaderText := Headers
-		return this.AddControl("ListView", Options, HeaderText)
+		return this.AddControl(GuiBase.ListViewControl, Options, HeaderText)
 	}
 	
 	AddStatusBar(Options := "", Text := "") {
-		return this.AddControl("StatusBar", Options, Text)
+		return this.AddControl(GuiBase.StatusBarControl, Options, Text)
 	}
 	
-	AddControl(Control, Options := "", Text := "") {
-		ControlClass := GuiBase[Control . "Control"]
+	AddControl(ControlClass, Options := "", Text := "") {
 		Ctrl := new ControlClass(this, Options, Text)
 		return this.Controls[Ctrl.hwnd] := Ctrl
 	}
@@ -275,12 +256,34 @@ Class GuiBase {
 		if Control := this.Controls[hwnd]
 			Func.Call(Control, Param*)
 	}
+	
+	MethodOverrideCheck() {
+		Namespace := []
+		
+		Bases := []
+		Bases.Push(base := this.base)
+		while (base := base.base)
+			Bases.InsertAt(1, base)
+		
+		for Depth, Obj in Bases {
+			for Key in Obj {
+				if Namespace.HasKey(Key)
+					throw "Class '" Obj.__Class "' is overwriting the method '" Key "' from the Gui base class."
+				else if (Depth = 1) && !(Key ~= "^(__Class|__Delete|Close|Escape)$")
+					Namespace[Key] := ""
+			}
+		}
+	}
+	
+	Print(Text) {
+		this.Debug.Call(text)
+	}
 }
 
 
 
 /*
-
+	
 	Tab(num) {
 		Gui % this.hwnd ":Tab", % num
 	}
