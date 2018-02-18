@@ -180,11 +180,18 @@ It can either be instantiated directly, or you can extend upon it for more compl
 	:param Options: Options string.
 	:param Text: Text contents of the control.
 	:return: :class:`GuiBase.StatusBarControl` instance.
+	
+  .. function:: GetControl(hwnd)
   
+     Gets a control instance.
+	
+	:param hwnd: hwnd of the control.
+	:return: A control instance, if found.
+
+
+
+
 .. currentmodule:: GuiBase
-
-
-
 
 
 
@@ -243,15 +250,9 @@ CommonControlType
 	
 .. class:: CommonControlType
 
-   This class extends :class:`GuiBase.ControlType`
+  This class extends :class:`GuiBase.ControlType`
 
-   Represents a control with a text field, such as:
-   
-   :class:`GuiBase.TextControl`
-   
-   :class:`GuiBase.ButtonControl`
-   
-   :class:`GuiBase.EditControl`
+  Represents a control with a text field, such as :class:`GuiBase.TextControl`, :class:`GuiBase.ButtonControl` and :class:`GuiBase.EditControl`
    
   .. data:: Text
      
@@ -270,21 +271,33 @@ TextControl
 
 .. class:: TextControl
 
-   This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.CommonControlType`
+   
+  .. data:: Type
+   
+     The type of control, contains ``"Text"``
    
 ButtonControl
 -----------
 
 .. class:: ButtonControl
 
-   This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.CommonControlType`
+   
+  .. data:: Type
+   
+     The type of control, contains ``"Button"``
    
 EditControl
 -----------
 
 .. class:: EditControl
 
-   This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.CommonControlType`
+   
+  .. data:: Type
+   
+     The type of control, contains ``"Edit"``
    
 ListViewControl
 -----------
@@ -292,6 +305,10 @@ ListViewControl
 .. class:: ListViewControl
 
   This class extends :class:`GuiBase.ControlType`
+
+  .. data:: Type
+   
+     The type of control, contains ``"ListView"``
 
   .. function:: Add(Options := "", Fields*)
 
@@ -302,24 +319,78 @@ ListViewControl
 
   .. function:: Insert(Row, Options := "", Fields*)
 
-    Identical to ``Add()`` but with an additional parameter ``Row``
+     Identical to ``Add()`` but with an additional parameter ``Row``
 
      :param Row: Which row to insert the new row at.
 	
+  .. function:: Delete(Row := "")
+
+     Deletes one or all rows.
+
+     :param Row: If blank all rows are deleted, otherwise the row number specified.
+	
+  .. function:: RowCount()
+
+     Get the amount of rows.
+	
+	:return: Row count of the listview.
+	
+  .. function:: ColumnCount()
+
+     Get the amount of columns.
+
+     :return: Column count of the listview.
+	
+  .. function:: SelectedCount()
+
+     Get the amount of currently selected rows.
+
+     :return: Selected row count of the listview.
+	
+  .. function:: GetSelected()
+
+     Gets all the rows that are selected.
+
+     :return: An array of all the row numbers that are selected.
+	
+  .. function:: GetChecked()
+
+     Gets all the rows that are checked.
+
+     :return: An array of all the row numbers that are checked.
+	
+  .. function:: GetNextSelected(Start := 0)
+
+     Gets the next selected row after ``Start``.
+
+     :return: Row number of the next selected row.
+	
+  .. function:: GetNextChecked(Start := 0)
+
+     Gets the next checked row after ``Start``.
+
+     :return: Row number of the next checked row.
+	
+  .. function:: GetNextFocused(Start := 0)
+
+     Gets the next focused row after ``Start``.
+
+     :return: Row number of the next focused row.
+
+
+
+
+
+
+
   .. function:: GetCount(Option := "")
 
-     Gets the amount of rows 
+     Gets the amount of rows.
 
      :param Row: Which row to insert the new row at.
+
+  .. function:: GetNext(Start := 0, Option := "")
+
+     Gets the next checked or focused row after ``Start``, use the two methods below. Use ``GetSelected()`` if you're trying to get all selected rows.
 	
-  .. function:: Insert(Row, Options := "", Fields*)
-
-    Identical to ``Add()`` but with an additional parameter ``Row``
-
-     :param Row: Which row to insert the new row at.
-	
-  .. function:: Insert(Row, Options := "", Fields*)
-
-    Identical to ``Add()`` but with an additional parameter ``Row``
-
-     :param Row: Which row to insert the new row at.
+	:return: Row number of the next checked or focused row.

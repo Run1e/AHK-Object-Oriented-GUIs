@@ -19,14 +19,36 @@
 			return LV_Delete()
 	}
 	
-	GetCount(Option := "") {
-		this.SetDefault()
-		return LV_GetCount(Option)
+	RowCount() {
+		return this.GetCount()
 	}
 	
-	GetNext(Start := "", Option := "") {
-		this.SetDefault()
-		return LV_GetNext(Start, Option)
+	ColumnCount() {
+		return this.GetCount("Column")
+	}
+	
+	SelectedCount() {
+		return this.GetCount("Selected")
+	}
+	
+	GetSelected() {
+		return this.GetRows()
+	}
+	
+	GetChecked() {
+		return this.GetRows("Checked")
+	}
+	
+	GetNextSelected(Start := 0) {
+		return this.GetNext(Start)
+	}
+	
+	GetNextChecked(Start := 0) {
+		return this.GetNext(Start, "Checked")
+	}
+	
+	GetNextFocused(Start := 0) {
+		return this.GetNext(Start, "Focused")
 	}
 	
 	GetText(Row, Column := 1) {
@@ -68,5 +90,25 @@
 		get {
 			return this.ImageList
 		}
+	}
+	
+	; internal
+	
+	GetCount(Option := "") {
+		this.SetDefault()
+		return LV_GetCount(Option)
+	}
+	
+	GetNext(Start := 0, Option := "") {
+		this.SetDefault()
+		return LV_GetNext(Start, Option)
+	}
+	
+	GetRows(Option := "") {
+		i := 0
+		Rows := []
+		while i := this.GetNext(i, Option)
+			Rows.Push(i)
+		return Rows
 	}
 }
