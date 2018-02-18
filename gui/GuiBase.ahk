@@ -166,10 +166,9 @@ Class GuiBase {
 		if IsObject(Headers) {
 			for Index, Header in Headers
 				HeaderText .= "|" Header
-			HeaderText := SubStr(HeaderText, 2)
-		} else
-			HeaderText := Headers
-		return this.AddControl(GuiBase.ListViewControl, Options, HeaderText)
+			Headers := SubStr(HeaderText, 2)
+		}
+		return this.AddControl(GuiBase.ListViewControl, Options, Headers)
 	}
 	
 	AddStatusBar(Options := "", Text := "") {

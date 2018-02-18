@@ -92,7 +92,7 @@
 		}
 	}
 	
-	; internal
+	; internal ?
 	
 	GetCount(Option := "") {
 		this.SetDefault()
