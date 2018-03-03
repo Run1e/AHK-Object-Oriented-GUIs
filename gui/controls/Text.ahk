@@ -1,3 +1,3 @@
-﻿Class TextControl extends GuiBase.CommonControlType {
+﻿Class TextControl extends GuiBase.ContentControlType {
 	Type := "Text"
 }

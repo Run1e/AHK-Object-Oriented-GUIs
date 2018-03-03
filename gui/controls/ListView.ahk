@@ -1,6 +1,24 @@
 ﻿Class ListViewControl extends GuiBase.ControlType {
 	Type := "ListView"
 	
+	RowCount {
+		get {
+			return this.GetCount()
+		}
+	}
+	
+	ColumnCount {
+		get {
+			return this.GetCount("Column")
+		}
+	}
+	
+	SelectedCount {
+		get {
+			return this.GetCount("Selected")
+		}
+	}
+	
 	Add(Options := "", Fields*) {
 		this.SetDefault()
 		return LV_Add(Options, Fields*)
@@ -17,18 +35,6 @@
 			return LV_Delete(Row)
 		else
 			return LV_Delete()
-	}
-	
-	RowCount() {
-		return this.GetCount()
-	}
-	
-	ColumnCount() {
-		return this.GetCount("Column")
-	}
-	
-	SelectedCount() {
-		return this.GetCount("Selected")
 	}
 	
 	GetSelected() {

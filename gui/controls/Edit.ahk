@@ -1,3 +1,3 @@
-﻿Class EditControl extends GuiBase.CommonControlType {
+﻿Class EditControl extends GuiBase.ContentControlType {
 	Type := "Edit"
 }

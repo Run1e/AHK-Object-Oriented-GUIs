@@ -1,3 +1,3 @@
-﻿Class ButtonControl extends GuiBase.CommonControlType {
+﻿Class ButtonControl extends GuiBase.ContentControlType {
 	Type := "Button"
 }

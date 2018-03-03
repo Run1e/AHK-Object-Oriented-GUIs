@@ -82,8 +82,7 @@ It can either be instantiated directly, or you can extend upon it for more compl
    
   .. function:: Destroy(Options := "")
 
-     Destroys the GUI, and all ``GuiBase.ControlType`` instances related to it. All references should be cleared after running this method. 
-     It's a good idea to clear all references you have lying around so it can be freed properly.
+     Destroys the GUI, and frees all ``GuiBase.ControlType`` instances related to it. It's a good idea to clear all references you have kept yourself so the GuiBase instance can be freed properly.
 	
   .. function:: Options(Options)
 
@@ -310,6 +309,22 @@ ListViewControl
    
      The type of control, contains ``"ListView"``
 
+  .. data:: RowCount
+  
+     Contains the amount of rows.
+	
+  .. data:: ColumnCount
+  
+     Contains the amount of columns.
+	
+  .. data:: SelectedCount
+  
+     Contains the amount of selected rows.
+	
+  .. data:: ImageList
+  
+     Contains an :class:`GuiBase.ImageList` instance if one is assigned to the listview.
+  
   .. function:: Add(Options := "", Fields*)
 
      Adds a row to the listview.
@@ -328,22 +343,6 @@ ListViewControl
      Deletes one or all rows.
 
      :param Row: If blank all rows are deleted, otherwise the row number specified.
-	
-  .. function:: RowCount()
-
-     Get the amount of rows.
-	
-	:return: Row count of the listview.
-	
-  .. function:: ColumnCount()
-
-     Get the amount of columns.
-
-     :return: Column count of the listview.
-	
-  .. function:: SelectedCount()
-
-     Get the amount of currently selected rows.
 
      :return: Selected row count of the listview.
 	
@@ -358,6 +357,12 @@ ListViewControl
      Gets all the rows that are checked.
 
      :return: An array of all the row numbers that are checked.
+	
+  .. function:: SetImageList(ImageList)
+  
+     Set an imagelist for the listview.
+	
+	:param ImageList: An :class:`GuiBase.ImageList` instance.
 	
   .. function:: GetNextSelected(Start := 0)
 
@@ -385,12 +390,15 @@ ListViewControl
 
   .. function:: GetCount(Option := "")
 
-     Gets the amount of rows.
-
-     :param Row: Which row to insert the new row at.
+     Calls `LV_GetCount() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetCount()>`_. It is recommended you use the methods above, however.
+	
+	:param Option: What kind of rows to count.
+	:return: Amount of rows.
 
   .. function:: GetNext(Start := 0, Option := "")
 
-     Gets the next checked or focused row after ``Start``, use the two methods below. Use ``GetSelected()`` if you're trying to get all selected rows.
+     Calls `LV_GetNext() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetNext>`_. It is recommended you use the methods above, however.
 	
+	:param Start: Which row to start at when finding the next.
+	:param Option: What kind of row to find.
 	:return: Row number of the next checked or focused row.

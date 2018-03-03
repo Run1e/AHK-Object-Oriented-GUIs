@@ -38,7 +38,6 @@ Class TestGui extends GuiBase {
 		Control.Insert(1,, Event, Row)
 		Loop 2
 			Control.ModifyCol(A_Index, "AutoHDR")
-		p(Control.GetSelected())
 	}
 	
 	500Window() {

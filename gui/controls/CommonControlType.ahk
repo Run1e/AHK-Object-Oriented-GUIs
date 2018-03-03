@@ -1,4 +1,4 @@
-﻿Class CommonControlType extends GuiBase.ControlType {
+﻿Class ContentControlType extends GuiBase.ControlType {
 	SetText(Text) {
 		this.Text := Text
 	}
