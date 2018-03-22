@@ -244,14 +244,14 @@ ControlType
      
      :param Func: Function reference or boundfunc to call when events happen.
      
-CommonControlType
+ContentControlType
 -----------------
      
-.. class:: CommonControlType
+.. class:: ContentControlType
 
   This class extends :class:`GuiBase.ControlType`
 
-  Represents a control with a text field, such as :class:`GuiBase.TextControl`, :class:`GuiBase.ButtonControl` and :class:`GuiBase.EditControl`
+  Represents a control with a singular content field, such as :class:`GuiBase.TextControl`, :class:`GuiBase.ButtonControl` and :class:`GuiBase.EditControl`
    
   .. data:: Text
      
@@ -270,7 +270,7 @@ TextControl
 
 .. class:: TextControl
 
-  This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.ContentControlType`
    
   .. data:: Type
    
@@ -281,7 +281,7 @@ ButtonControl
 
 .. class:: ButtonControl
 
-  This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.ContentControlType`
    
   .. data:: Type
    
@@ -292,7 +292,7 @@ EditControl
 
 .. class:: EditControl
 
-  This class extends :class:`GuiBase.CommonControlType`
+  This class extends :class:`GuiBase.ContentControlType`
    
   .. data:: Type
    
