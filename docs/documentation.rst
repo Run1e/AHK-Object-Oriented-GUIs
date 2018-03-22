@@ -61,8 +61,8 @@ It can either be instantiated directly, or you can extend upon it for more compl
      Creates a new instance of the class.
 
      .. note::
-	   You shouldn't call this meta-function directly, but use the ``new`` keyword.
-	   See the AutoHotkey documentation on `constructing and deconstructing objects <https://autohotkey.com/docs/Objects.htm#Custom_NewDelete>`_.
+        You shouldn't call this meta-function directly, but use the ``new`` keyword.
+        See the AutoHotkey documentation on `constructing and deconstructing objects <https://autohotkey.com/docs/Objects.htm#Custom_NewDelete>`_.
 
      :param Title: Title of the window.
      :param Options: Options string.
@@ -83,109 +83,109 @@ It can either be instantiated directly, or you can extend upon it for more compl
   .. function:: Destroy(Options := "")
 
      Destroys the GUI, and frees all ``GuiBase.ControlType`` instances related to it. It's a good idea to clear all references you have kept yourself so the GuiBase instance can be freed properly.
-	
+     
   .. function:: Options(Options)
 
      Change the options of the GUI.
 
      :param Options: Options string.
-	
+     
   .. function:: SetDefault()
 
      Sets this GUI as the default GUI.
-	
+     
   .. function:: SetDefaultListView(ListView)
 
      Sets the default ListView control.
 
      :param ListView: :class:`GuiBase.ListViewControl` instance.
-	
+     
   .. function:: Control(Command := "", Control := "", ControlParams := "")
 
      Calls GuiControl.
 
      :param Command: The GuiControl command to perform.
-	:param Control: The control instance to apply the command on.
-	:param ControlParams: The parameters for the command.
-	
+     :param Control: The control instance to apply the command on.
+     :param ControlParams: The parameters for the command.
+     
   .. function:: Margins(x := "", y := "")
 
      Sets the control spacing margins for newly created controls.
 
      :param x: Horizontal spacing.
-	:param y: Vertical spacing.
-	
+     :param y: Vertical spacing.
+     
   .. function:: Font(Options := "", Font := "")
 
      Changes the font for newly created controls.
 
      :param Options: Options string.
-	:param Font: Font name.
-	
+     :param Font: Font name.
+     
   .. function:: Focus()
 
      Focuses the GUI window.
-	
+     
   .. function:: Enable()
 
      Enables the GUI window if previously disabled.
-	
+     
   .. function:: Disable()
 
      Disables the GUI window if previously enabled.
-	
+     
   .. function:: SetIcon(Icon)
 
      Changes the GUI window icon.
-	
-	:param Icon: Path to an icon file.
-	
+     
+     :param Icon: Path to an icon file.
+     
   .. function:: AddText(Options := "", Text := "")
   
      Adds a text control.
-	
-	:param Options: Options string.
-	:param Text: Text contents of the control.
-	:return: :class:`GuiBase.TextControl` instance.
-	
+     
+     :param Options: Options string.
+     :param Text: Text contents of the control.
+     :return: :class:`GuiBase.TextControl` instance.
+     
   .. function:: AddButton(Options := "", Text := "")
   
      Adds a text control.
-	
-	:param Options: Options string.
-	:param Text: Text contents of the control.
-	:return: :class:`GuiBase.ButtonControl` instance.
-	
+     
+     :param Options: Options string.
+     :param Text: Text contents of the control.
+     :return: :class:`GuiBase.ButtonControl` instance.
+     
   .. function:: AddEdit(Options := "", Text := "")
   
      Adds an edit control.
-	
-	:param Options: Options string.
-	:param Text: Text contents of the control.
-	:return: :class:`GuiBase.EditControl` instance.
-	
+     
+     :param Options: Options string.
+     :param Text: Text contents of the control.
+     :return: :class:`GuiBase.EditControl` instance.
+     
   .. function:: AddListView(Options := "", Headers := "")
   
      Adds a ListView control.
-	
-	:param Options: Options string.
-	:param Headers: Either an array of header names, or a string of header names separated by ``|`` (pipe).
-	:return: :class:`GuiBase.ListViewControl` instance.
-	
+     
+     :param Options: Options string.
+     :param Headers: Either an array of header names, or a string of header names separated by ``|`` (pipe).
+     :return: :class:`GuiBase.ListViewControl` instance.
+     
   .. function:: AddStatusBar(Options := "", Text := "")
   
      Adds a statusbar.
-	
-	:param Options: Options string.
-	:param Text: Text contents of the control.
-	:return: :class:`GuiBase.StatusBarControl` instance.
-	
+     
+     :param Options: Options string.
+     :param Text: Text contents of the control.
+     :return: :class:`GuiBase.StatusBarControl` instance.
+     
   .. function:: GetControl(hwnd)
   
      Gets a control instance.
-	
-	:param hwnd: hwnd of the control.
-	:return: A control instance, if found.
+     
+     :param hwnd: hwnd of the control.
+     :return: A control instance, if found.
 
 
 
@@ -204,11 +204,11 @@ ControlType
   .. data:: Gui
    
      Reference to the GUI instance that created this instance.
-	
+     
   .. data:: hwnd
   
      Handle of the control.
-	
+     
   .. data:: Position
   
      :class:`GuiBase.ControlPosition` instance.
@@ -216,37 +216,37 @@ ControlType
   .. function:: __New(Gui, Options := "", Text := "")
 
      Creates a new control instance.
-	
-	.. note::
-	   You shouldn't have to call this yourself, instead use the methods in :class:`GuiBase` to add controls.
+     
+     .. note::
+        You shouldn't have to call this yourself, instead use the methods in :class:`GuiBase` to add controls.
 
      :param Gui: The GUI instance that created this control.
      :param Options: Options string.
-	:param Text: Inital text contents of the control, if applicable.
+     :param Text: Inital text contents of the control, if applicable.
      :return: An indirect reference to the control instance.
-	
+     
   .. function:: Options(Options)
 
      Change the options/settings of the control.
-	
-	:param Options: Options string.
-	
+     
+     :param Options: Options string.
+     
   .. function:: Control(Command := "", Options := "")
 
      Calls the `GuiControl <https://autohotkey.com/docs/commands/GuiControl.htm>`_ command.
-	
-	:param Command: The action to do. See documentation link above.
-	:param Options: `Param3` in the documentation link above.
-	
+     
+     :param Command: The action to do. See documentation link above.
+     :param Options: `Param3` in the documentation link above.
+     
   .. function:: OnEvent(Func := "")
 
      Makes the control call ``Func`` when an event happens.
-	
+     
      :param Func: Function reference or boundfunc to call when events happen.
-	
+     
 CommonControlType
 -----------------
-	
+     
 .. class:: CommonControlType
 
   This class extends :class:`GuiBase.ControlType`
@@ -255,16 +255,16 @@ CommonControlType
    
   .. data:: Text
      
-	Get or set the contents of the control.
-	
+     Get or set the contents of the control.
+     
   .. function:: GetText()
   
      :return: The text contents of the control.
-	
+     
   .. function:: SetText(Text)
   
      :param Text: New contents of the control.
-	
+     
 TextControl
 -----------
 
@@ -312,18 +312,18 @@ ListViewControl
   .. data:: RowCount
   
      Contains the amount of rows.
-	
+     
   .. data:: ColumnCount
   
      Contains the amount of columns.
-	
+     
   .. data:: SelectedCount
   
      Contains the amount of selected rows.
-	
+     
   .. data:: ImageList
   
-     Contains an :class:`GuiBase.ImageList` instance if one is assigned to the listview.
+     Contains an :class:`GuiBase.ImageList` instance if one is assigned to the listview via ``SetImageList``.
   
   .. function:: Add(Options := "", Fields*)
 
@@ -337,7 +337,7 @@ ListViewControl
      Identical to ``Add()`` but with an additional parameter ``Row``
 
      :param Row: Which row to insert the new row at.
-	
+     
   .. function:: Delete(Row := "")
 
      Deletes one or all rows.
@@ -345,60 +345,54 @@ ListViewControl
      :param Row: If blank all rows are deleted, otherwise the row number specified.
 
      :return: Selected row count of the listview.
-	
+     
   .. function:: GetSelected()
 
      Gets all the rows that are selected.
 
      :return: An array of all the row numbers that are selected.
-	
+     
   .. function:: GetChecked()
 
      Gets all the rows that are checked.
 
      :return: An array of all the row numbers that are checked.
-	
+     
   .. function:: SetImageList(ImageList)
   
      Set an imagelist for the listview.
-	
-	:param ImageList: An :class:`GuiBase.ImageList` instance.
-	
+     
+     :param ImageList: An :class:`GuiBase.ImageList` instance.
+     
   .. function:: GetNextSelected(Start := 0)
 
      Gets the next selected row after ``Start``.
 
      :return: Row number of the next selected row.
-	
+     
   .. function:: GetNextChecked(Start := 0)
 
      Gets the next checked row after ``Start``.
 
      :return: Row number of the next checked row.
-	
+     
   .. function:: GetNextFocused(Start := 0)
 
      Gets the next focused row after ``Start``.
 
      :return: Row number of the next focused row.
 
-
-
-
-
-
-
   .. function:: GetCount(Option := "")
 
      Calls `LV_GetCount() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetCount()>`_. It is recommended you use the methods above, however.
-	
-	:param Option: What kind of rows to count.
-	:return: Amount of rows.
+     
+     :param Option: What kind of rows to count.
+     :return: Amount of rows.
 
   .. function:: GetNext(Start := 0, Option := "")
 
      Calls `LV_GetNext() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetNext>`_. It is recommended you use the methods above, however.
-	
-	:param Start: Which row to start at when finding the next.
-	:param Option: What kind of row to find.
-	:return: Row number of the next checked or focused row.
+     
+     :param Start: Which row to start at when finding the next.
+     :param Option: What kind of row to find.
+     :return: Row number of the next checked or focused row.

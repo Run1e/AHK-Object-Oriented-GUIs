@@ -1,8 +1,6 @@
-###############
-Getting Started
-###############
-
-It is recommended you have some prior experience working with Guis in AutoHotkey, as this library builds upon existing functionality
+######################
+Additional information
+######################
 
 Installation
 ============

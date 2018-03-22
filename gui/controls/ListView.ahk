@@ -83,6 +83,8 @@
 	
 	SetImageList(ImageList) {
 		this.SetDefault()
+		if !IsInstance(ImageList, GuiBase.ImageList)
+			throw "Provided ImageList is not of type GuiBase.ImageList"
 		this.ImageList := ImageList
 		return LV_SetImageList(this.ImageList.id, !ImageList.LargeIcons)
 	}

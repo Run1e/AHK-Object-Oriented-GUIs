@@ -180,6 +180,18 @@ Class GuiBase {
 		return this.Controls[Ctrl.hwnd] := Ctrl
 	}
 	
+	; misc
+	
+	GetControlValues() {
+		WinGet, ClassNNList, ControlList, % this.ahk_id
+		Loop, Parse, ClassNNList, `n
+		{
+			ControlGet, hwnd, hwnd,,%A_LoopField%,ahk_id %hWndWindow%
+			if (hWnd = hWndControl)
+				return A_LoopField
+		}
+	}
+	
 	; PROPERTIES
 	
 	Pos {

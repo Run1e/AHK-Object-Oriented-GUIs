@@ -13,6 +13,7 @@ AHK-OOG is a library makes it easy to work with GUIs in AutoHotkey in an object-
    :caption: Table of Contents
    
    getting-started
+   additional
    documentation
    examples
    about
