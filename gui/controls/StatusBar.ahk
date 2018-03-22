@@ -11,13 +11,8 @@
 		return SB_SetParts(Width*)
 	}
 	
-	SetIcon(File, IconNumber := "", PartNumber := "") {
+	SetIcon(File, IconNumber := "", PartNumber := 1) {
 		this.Gui.SetDefault()
 		return SB_SetIcon(File, IconNumber, PartNumber)
-	}
-	
-	SetProgress(Value := 0, Seg := 1, Ops := "") {
-		this.Gui.SetDefault()
-		try Func("SB_SetProgress").Call(Value, Seg, Ops)
 	}
 }

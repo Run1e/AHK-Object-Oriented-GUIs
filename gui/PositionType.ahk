@@ -21,7 +21,6 @@ Class ControlPosition extends GuiBase.PositionType {
 }
 
 Class PositionType {
-	static _EnumOrder := ["X", "Y", "W", "H"]
 	
 	__New(Parent) {
 		this.Parent := Parent
@@ -33,10 +32,11 @@ Class PositionType {
 	}
 	
 	Next(ByRef k, ByRef v) {
+		static EnumOrder := ["X", "Y", "W", "H"]
 		if (this.i = 4)
 			return false
 		this.i++
-		k := this._EnumOrder[this.i]
+		k := EnumOrder[this.i]
 		v := this[k]
 		return true
 	}

@@ -397,7 +397,40 @@ ListViewControl
      :param Option: What kind of row to find.
      :return: Row number of the next checked or focused row.
 	
+
+StatusBarControl
+-----------
+
+.. class:: StatusBarControl
+
+  This class extends :class:`GuiBase.ControlType`
+
+  .. data:: Type
+   
+     The type of control, contains ``"StatusBar"``
+  
+  .. function:: SetText(NewText, PartNumber := 1, Style := "")
+
+     Calls `SB_SetText() <https://autohotkey.com/docs/commands/GuiControls.htm#SB_SetText>`_. 
+
+     :param NewText: New text contents.
+     :param PartNumber: Which part to change to ``NewText``.
+	:param Style: See the documentation link above.
 	
+  .. function:: SetParts(Width*)
+
+     Calls `SB_SetParts() <https://autohotkey.com/docs/commands/GuiControls.htm#SB_SetParts>`_. 
+
+     :param Width*: New widths of the parts.
+	
+  .. function:: SetParts(File, IconNumber := "", PartNumber := 1)
+
+     Calls `SB_SetIcon() <https://autohotkey.com/docs/commands/GuiControls.htm#SB_SetIcon>`_. 
+
+     :param File: Icon file.
+	:param IconNumber: Icon number of the file.
+	:param PartNumber: Which part to set the icon on.
+
 PositionType
 ------------
 

@@ -48,7 +48,7 @@ Class GuiBase {
 	
 	__New(Title := "AutoHotkey Window", Options := "", Debug := "") {
 		if (type(IndirectReferenceHolder) != "IndirectReferenceHolder")
-			throw "Missing dependency: IndirectReference/IndirectReferenceHolder"
+			throw "Missing dependency: IndirectReferenceHolder"
 		
 		this.MethodOverrideCheck()
 		
