@@ -27,7 +27,7 @@ Functions
    
 .. function:: IndirectReferenceDelete(this)
 
-   This function should not be touched by the user, it's used by :class:``IndirectReferenceHolder``.
+   This function should not be touched by the user, it's used by :class:`IndirectReferenceHolder`.
    
 A real world example of ``IsInstance()``
 
@@ -35,7 +35,7 @@ A real world example of ``IsInstance()``
 
    ; assume MyGui is a gui with one text control
    
-   MyControl := MyGui.Controls[0] ; gets the control
+   MyControl := MyGui.Controls[1] ; gets the control
    
    msgbox % IsInstance(MyControl, GuiBase.TextControl)
    ; the line above will result to true, since the control
@@ -47,12 +47,17 @@ A real world example of ``IsInstance()``
    ; GuiBase.ContentControlType which in turn inherit
    ; from GuiBase.ControlType
    
+   msgbox % IsInstance(MyControl, GuiBase, GuiBase.ContentControlType)
+   ; also true. It'll check if MyControl is an instance
+   ; of GuiBase first and since it isn't, it'll continue and
+   ; check the next one, which it of course is an instance of
+   
 Classes
 =======
 
 Only one class is bundled with the library at the moment.
 Currently the only usage of this class is in the constructor
-of :class:``GuiBase.ControlType``
+of :class:`GuiBase.ControlType`.
 
 .. class:: IndirectReferenceHolder
 

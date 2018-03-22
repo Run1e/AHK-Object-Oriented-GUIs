@@ -399,7 +399,7 @@ ListViewControl
 	
 	
 PositionType
------------
+------------
 
 .. class:: PositionType
 
@@ -407,7 +407,7 @@ PositionType
   It has four properties (X, Y, W, H) which can be get and set.
   
 WindowPosition
------------
+--------------
 
 .. class:: WindowPosition
 
@@ -416,9 +416,9 @@ WindowPosition
   You can use the properties to set and get position/size of a window.
   
 ControlPosition
------------
+---------------
 
-.. class:: WindowPosition
+.. class:: ControlPosition
 
   This class extends :class:`GuiBase.PositionType`
   

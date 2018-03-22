@@ -20,10 +20,11 @@ Class TestGui extends GuiBase {
 		this.AddButton("w200", "click to change title").OnEvent(this.ChangeTitle.Bind(this))
 		this.AddButton("w200", "click to make window 500x500").OnEvent(this.500Window.Bind(this))
 		this.AddButton("w200", "click to center window").OnEvent(this.CenterWindow.Bind(this))
+		this.AddButton("w200", "click to print the size of this button").OnEvent(this.ButtonSizeClick.Bind(this))
+		this.AddButton("w200", "click to destroy and free references").OnEvent(Func("Exit"))
 		
 		this.LV := this.AddListView("w200", ["Event", "Row"]).OnEvent(this.ListViewEvent.Bind(this))
 		
-		this.ExitButton := this.AddButton("w200", "click to destroy and free references").OnEvent(Func("Exit"))
 		
 		this.SB := this.AddStatusBar()
 		this.SB.SetText("Statusbar text", 2)
@@ -50,13 +51,15 @@ Class TestGui extends GuiBase {
 		this.Pos.Y := A_ScreenHeight / 2 - this.Pos.H / 2
 	}
 	
+	ButtonSizeClick(Control, junk*) {
+		m(Control.X, Control.Y, Control.W, Control.H)
+	}
+	
 	Size(EventInfo, Width, Height) {
 		this.SB.SetParts(Width / 2, Width / 2)
 		this.SB.SetText(EventInfo ", " Width ", " Height, 1)
 		
-		this.LV.Pos.H := Height - 160
-		
-		this.ExitButton.Pos.Y := Height - 55
+		this.LV.Pos.H := Height - 190
 		
 		; change width of all buttons
 		for Index, Control in this.Controls
