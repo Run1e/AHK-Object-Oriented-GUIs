@@ -10,7 +10,7 @@ IsInstance(obj, cls*) {
 	base := obj
 	Loop {
 		for Index, Class in cls
-			if (base.__Class == Class.__Class)
+			if (type(base) == type(Class))
 				return true
 		base := base.base
 	} until !base
@@ -34,7 +34,7 @@ Class GuiBase {
 	
 	; controls
 	#Include %A_LineFile%\..\controls\ControlType.ahk
-	#Include %A_LineFile%\..\controls\CommonControlType.ahk
+	#Include %A_LineFile%\..\controls\ContentControlType.ahk
 	#Include %A_LineFile%\..\controls\Text.ahk
 	#Include %A_LineFile%\..\controls\Button.ahk
 	#Include %A_LineFile%\..\controls\Edit.ahk
@@ -210,6 +210,14 @@ Class GuiBase {
 		}
 	}
 	
+	GetTitle() {
+		return this.Title
+	}
+	
+	SetTitle(NewTitle) {
+		this.Title := NewTitle
+	}
+	
 	Title {
 		set {
 			WinSetTitle, % this.ahk_id,, % value
@@ -279,7 +287,7 @@ Class GuiBase {
 		for Depth, Obj in Bases {
 			for Key in Obj {
 				if Namespace.HasKey(Key)
-					throw "Class '" Obj.__Class "' is overwriting the method '" Key "' from the Gui base class."
+					throw "Class '" type(Obj) "' is overwriting the method '" Key "' from the Gui base class."
 				else if (Depth = 1) && !(Key ~= "^(__Class|__Delete|Close|Escape)$")
 					Namespace[Key] := ""
 			}

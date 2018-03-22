@@ -5,8 +5,8 @@ Additional information
 The main components of the library lives under one namespace, namely ``GuiBase``.
 However the library introduces a few other namespace intrusions.
 
-Functions
-==========
+Namespace reservations
+======================
 
 .. function:: Type(cls)
 
@@ -51,9 +51,6 @@ A real world example of ``IsInstance()``
    ; also true. It'll check if MyControl is an instance
    ; of GuiBase first and since it isn't, it'll continue and
    ; check the next one, which it of course is an instance of
-   
-Classes
-=======
 
 Only one class is bundled with the library at the moment.
 Currently the only usage of this class is in the constructor

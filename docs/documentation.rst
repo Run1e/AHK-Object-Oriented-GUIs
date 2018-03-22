@@ -218,7 +218,7 @@ ControlType
      Creates a new control instance.
      
      .. note::
-        You shouldn't have to call this yourself, instead use the methods in :class:`GuiBase` to add controls.
+        Don't construct control instances directly, use the methods in :class:`GuiBase`.
 
      :param Gui: The GUI instance that created this control.
      :param Options: Options string.
@@ -405,6 +405,9 @@ PositionType
 
   This class handles setting and getting positions of controls and windows.
   It has four properties (X, Y, W, H) which can be get and set.
+  
+  .. note::
+     This class has a custom enumerator that will loop through the properties.
   
 WindowPosition
 --------------

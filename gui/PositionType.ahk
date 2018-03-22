@@ -15,14 +15,30 @@ Class ControlPosition extends GuiBase.PositionType {
 	}
 	
 	Get(Coord) {
-		ControlGetPos, x, y, w, h,, % "ahk_id" this.hwnd
+		ControlGetPos, x, y, w, h,, % "ahk_id" this.Parent.hwnd
 		return _:=%Coord%
 	}
 }
 
 Class PositionType {
+	static _EnumOrder := ["X", "Y", "W", "H"]
+	
 	__New(Parent) {
 		this.Parent := Parent
+	}
+	
+	_NewEnum() {
+		this.i := 0
+		return this
+	}
+	
+	Next(ByRef k, ByRef v) {
+		if (this.i = 4)
+			return false
+		this.i++
+		k := this._EnumOrder[this.i]
+		v := this[k]
+		return true
 	}
 	
 	X {

@@ -4,7 +4,7 @@ SetBatchLines -1
 #Include Debug.ahk
 Debug.Clear()
 
-#Include gui\GuiBase.ahk
+#Include ..\gui\GuiBase.ahk
 
 global MyGui := new TestGui("test gui", "+Resize +Border -MinimizeBox", func("p"))
 
@@ -52,7 +52,7 @@ Class TestGui extends GuiBase {
 	}
 	
 	ButtonSizeClick(Control, junk*) {
-		m(Control.X, Control.Y, Control.W, Control.H)
+		m(Control.Position)
 	}
 	
 	Size(EventInfo, Width, Height) {
