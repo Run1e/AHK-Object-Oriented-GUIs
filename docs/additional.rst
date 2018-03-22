@@ -2,22 +2,56 @@
 Additional information
 ######################
 
-Installation
-============
+The main components of the library lives under one namespace, namely ``GuiBase``.
+However the library introduces a few other namespace intrusions.
 
-1. Download or clone the repository at https://github.com/Run1e/AHK-Object-Oriented-GUIs
-2. Copy the ``gui`` folder into your project
-3. Include the library in your project by doing ``#Include gui\GuiBase.ahk``
+Functions
+==========
 
-Testing installation
-====================
+.. function:: Type(cls)
 
-Here's a small snippet you can try to check if your installation was successful:
+   This function is just a shorthand for ``cls.__Class``
+
+   :param cls: Any class object/instance.
+   :return: ``cls.__Class``
+   
+.. function:: IsInstance(obj, cls*)
+
+   Similar to Pythons function of the same name.
+   It returns ``true`` if the type (or technically class name) of ``obj`` matches
+   any of those specified in ``cls``.
+
+   :param obj: A class object/instance.
+   :param cls: Any variadic amount of class objects/instances.
+   :return: Boolean value.
+   
+A real world example of ``IsInstance()``
 
 .. code-block:: ahk
 
-   MyGui := new GuiBase("Title", "-MinimizeBox")
-   MyGui.AddButton("w200", "Button Text")
-   MyGui.Show()
+   ; assume MyGui is a gui with one text control
+   
+   MyControl := MyGui.Controls[0] ; gets the control
+   
+   msgbox % IsInstance(MyControl, GuiBase.TextControl)
+   ; the line above will result to true, since the control
+   ; is of type GuiBase.TextControl
+   
+   msgbox % IsInstance(MyControl, GuiBase.ControlType)
+   ; the line above will also result to true, since the
+   ; control type (GuiBase.TextControl) inherit from
+   ; GuiBase.ContentControlType which in turn inherit
+   ; from GuiBase.ControlType
+   
+Classes
+=======
 
-It will create and show a small, simplistic GUI consisting of a single button.
+Only one class is bundled with the library at the moment.
+Currently the only usage of this class is in the constructor
+of :class:``GuiBase.ControlType``
+
+.. class: IndirectReferenceHolder
+
+   This class creates an indirect reference to an object and holds the original reference itself.
+   
+   It uses all five meta-functions to create a layer between the actual object and what the user has access to.

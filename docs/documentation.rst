@@ -411,7 +411,8 @@ WindowPosition
 
 .. class:: WindowPosition
 
-  This class extends :class:`PositionType`
+  This class extends :class:`GuiBase.PositionType`
+  
   You can use the properties to set and get position/size of a window.
   
 ControlPosition
@@ -419,5 +420,6 @@ ControlPosition
 
 .. class:: WindowPosition
 
-  This class extends :class:`PositionType`
+  This class extends :class:`GuiBase.PositionType`
+  
   You can use the properties to set and get position/size of a control.
