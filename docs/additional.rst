@@ -25,6 +25,10 @@ Functions
    :param cls: Any variadic amount of class objects/instances.
    :return: Boolean value.
    
+.. function:: IndirectReferenceDelete(this)
+
+   This function should not be touched by the user, it's used by :class:``IndirectReferenceHolder``.
+   
 A real world example of ``IsInstance()``
 
 .. code-block:: ahk
@@ -50,7 +54,7 @@ Only one class is bundled with the library at the moment.
 Currently the only usage of this class is in the constructor
 of :class:``GuiBase.ControlType``
 
-.. class: IndirectReferenceHolder
+.. class:: IndirectReferenceHolder
 
    This class creates an indirect reference to an object and holds the original reference itself.
    
