@@ -3,8 +3,10 @@ Documentation
 ###############
 
 
+
+*******
 GuiBase
---------
+*******
 
 The :class:`GuiBase` class is the main class that represents a GUI.
 
@@ -107,6 +109,13 @@ It can either be instantiated directly, or you can extend upon it for more compl
      :param Command: The GuiControl command to perform.
      :param Control: The control instance to apply the command on.
      :param ControlParams: The parameters for the command.
+	
+  .. function:: GetControl(hwnd)
+  
+     Gets a control instance.
+     
+     :param hwnd: hwnd of the control.
+     :return: A control instance, if found.
      
   .. function:: Margins(x := "", y := "")
 
@@ -179,13 +188,6 @@ It can either be instantiated directly, or you can extend upon it for more compl
      :param Options: Options string.
      :param Text: Text contents of the control.
      :return: :class:`GuiBase.StatusBarControl` instance.
-     
-  .. function:: GetControl(hwnd)
-  
-     Gets a control instance.
-     
-     :param hwnd: hwnd of the control.
-     :return: A control instance, if found.
 
 
 
@@ -194,8 +196,12 @@ It can either be instantiated directly, or you can extend upon it for more compl
 
 
 
+**********
+Base types
+**********
+
 ControlType
---------
+-----------
    
 .. class:: ControlType
 
@@ -264,7 +270,22 @@ ContentControlType
   .. function:: SetText(Text)
   
      :param Text: New contents of the control.
-     
+
+PositionType
+------------
+
+.. class:: PositionType
+
+  This class handles setting and getting positions of controls and windows.
+  It has four properties (X, Y, W, H) which can be get and set.
+  
+  .. note::
+     This class has a custom enumerator that will loop through the properties.
+
+*************
+Control types
+*************
+
 TextControl
 -----------
 
@@ -428,20 +449,15 @@ StatusBarControl
      Calls `SB_SetIcon() <https://autohotkey.com/docs/commands/GuiControls.htm#SB_SetIcon>`_. 
 
      :param File: Icon file.
-	:param IconNumber: Icon number of the file.
-	:param PartNumber: Which part to set the icon on.
+     :param IconNumber: Icon number of the file.
+     :param PartNumber: Which part to set the icon on.
 
-PositionType
-------------
 
-.. class:: PositionType
 
-  This class handles setting and getting positions of controls and windows.
-  It has four properties (X, Y, W, H) which can be get and set.
-  
-  .. note::
-     This class has a custom enumerator that will loop through the properties.
-  
+**************
+Position types
+**************
+
 WindowPosition
 --------------
 
@@ -459,3 +475,53 @@ ControlPosition
   This class extends :class:`GuiBase.PositionType`
   
   You can use the properties to set and get position/size of a control.
+  
+
+
+
+**********
+Gui events
+**********
+
+This section contains a list of all Gui events.
+
+These methods are not supposed to be called. For a practical example of how these are used, see :doc:`examples`.
+
+.. function:: GuiBase.Close()
+   
+   Called when the close button is clicked on the Gui.
+   
+.. function:: GuiBase.Escape()
+   
+   Called when the escape button is pressed while the Gui is focused.
+   
+.. function:: GuiBase.Size(EventInfo, Width, Height)
+   
+   Called when the Gui is resized.
+   
+   :param EventInfo: 0 if resized, 1 if minimized and 2 if maximized.
+   :param Width: The new width of the Gui window.
+   :param Height: The new height of the Gui window.
+   
+.. function:: GuiBase.DropFiles(FileArray, Control, X, Y)
+   
+   Called when files are dropped onto the Gui.
+   
+   :param FileArray: Array of files.
+   :param Control: Which control the files were "dropped" onto.
+   :param X: X coordinate of where the files were dropped.
+   :param Y: Y coordinate.
+   
+.. function:: GuiBase.ContextMenu(Control, EventInfo, IsRightClick, X, Y)
+   
+   Called when the user right-clicks anywhere in the window except the title or menu bar.
+   
+   :param Control: Control which was right-clicked, if any.
+   :param EventInfo: See the `documentation <https://autohotkey.com/docs/commands/Gui.htm#GuiContextMenu>`_.
+   :param Height: The new height of the Gui window.
+
+
+
+**************
+Control events
+**************
