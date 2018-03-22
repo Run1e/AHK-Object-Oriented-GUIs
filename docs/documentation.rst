@@ -384,15 +384,40 @@ ListViewControl
 
   .. function:: GetCount(Option := "")
 
-     Calls `LV_GetCount() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetCount()>`_. It is recommended you use the methods above, however.
+     Calls `LV_GetCount() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetCount()>`_. It is however recommended you use the methods above.
      
      :param Option: What kind of rows to count.
      :return: Amount of rows.
 
   .. function:: GetNext(Start := 0, Option := "")
 
-     Calls `LV_GetNext() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetNext>`_. It is recommended you use the methods above, however.
+     Calls `LV_GetNext() <https://autohotkey.com/docs/commands/ListView.htm#LV_GetNext>`_. It is however recommended you use the methods above.
      
      :param Start: Which row to start at when finding the next.
      :param Option: What kind of row to find.
      :return: Row number of the next checked or focused row.
+	
+	
+PositionType
+-----------
+
+.. class:: PositionType
+
+  This class handles setting and getting positions of controls and windows.
+  It has four properties (X, Y, W, H) which can be get and set.
+  
+WindowPosition
+-----------
+
+.. class:: WindowPosition
+
+  This class extends :class:`PositionType`
+  You can use the properties to set and get position/size of a window.
+  
+ControlPosition
+-----------
+
+.. class:: WindowPosition
+
+  This class extends :class:`PositionType`
+  You can use the properties to set and get position/size of a control.
