@@ -249,6 +249,7 @@ ControlType
      Makes the control call ``Func`` when an event happens.
      
      :param Func: Function reference or boundfunc to call when events happen.
+	:return: The control instance.
      
 ContentControlType
 -----------------
@@ -436,7 +437,7 @@ StatusBarControl
 
      :param NewText: New text contents.
      :param PartNumber: Which part to change to ``NewText``.
-	:param Style: See the documentation link above.
+     :param Style: See the documentation link above.
 	
   .. function:: SetParts(Width*)
 

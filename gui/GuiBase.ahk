@@ -1,5 +1,5 @@
 ﻿
-#Include %A_LineFile%\..\IndirectReference.ahk
+#Include %A_LineFile%\..\IndirectReferenceHolder.ahk
 #Include %A_LineFile%\..\Events.ahk
 
 Type(cls) {
