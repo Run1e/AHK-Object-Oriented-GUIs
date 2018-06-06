@@ -27,6 +27,7 @@ Class TestGui extends GuiBase {
 		this.AddButton("w200", "click to center window").OnEvent(this.CenterWindow.Bind(this))
 		this.AddButton("w200", "click to print the size of this button").OnEvent(this.ButtonSizeClick.Bind(this))
 		this.AddButton("w200", "click to destroy and free references").OnEvent(Func("Exit"))
+		this.AddEdit("w200", "blah").OnEvent(this.EditEvent.Bind(this))
 		
 		this.LV := this.AddListView("w200", ["Event", "Row"]).OnEvent(this.ListViewEvent.Bind(this))
 		
@@ -37,7 +38,12 @@ Class TestGui extends GuiBase {
 		this.removeTooltipFn := this.RemoveTooltip.Bind(this)
 	}
 	
+	EditEvent(Control, Event, a){
+		this.ToolTip("Edit Contents: " Control.GetText())
+	}
+	
 	DDLEvent(Control, Event, a) {
+		this.ToolTip("DDL Selected: " Control.GetSelected())
 		p(Event, asdf)
 	}
 	

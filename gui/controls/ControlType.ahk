@@ -32,6 +32,10 @@
 		this.Gui.Control(Command, this, Options)
 	}
 	
+	ControlGet(Command := "", Options := "") {
+		return this.Gui.ControlGet(Command, this, Options)
+	}
+	
 	MoveDraw(Options) {
 		this.Control("MoveDraw", Options)
 	}
