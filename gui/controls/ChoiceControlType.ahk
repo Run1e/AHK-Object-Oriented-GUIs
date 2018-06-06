@@ -29,7 +29,6 @@ Class ChoiceControlType extends GuiBase.ControlType {
 	ChooseString(String) {
 		this.Control("ChooseString", String)
 	}
-<<<<<<< HEAD
 	
 	GetSelected() {
 		return this.GuiControlGet()
@@ -44,6 +43,4 @@ Class ChoiceControlType extends GuiBase.ControlType {
 			this.Choose(value)
 		}
 	}
-=======
->>>>>>> origin/master
 }
