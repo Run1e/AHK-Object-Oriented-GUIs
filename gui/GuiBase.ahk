@@ -123,6 +123,11 @@ Class GuiBase {
 		GuiControl % this.hwnd ":" Command, % Control.hwnd, % ControlParams
 	}
 	
+	ControlGet(Command := "", Control := "", ControlParams := "") {
+		GuiControlGet value, % this.hwnd ":" Command, % Control.hwnd, % ControlParams
+		return value
+	}
+	
 	Margins(x := "", y := "") {
 		Gui % this.hwnd ":Margin", % x, % y
 	}
