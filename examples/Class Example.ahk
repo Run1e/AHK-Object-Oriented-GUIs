@@ -33,6 +33,8 @@ Class TestGui extends GuiBase {
 		
 		this.SB := this.AddStatusBar()
 		this.SB.SetText("Statusbar text", 2)
+		
+		this.removeTooltipFn := this.RemoveTooltip.Bind(this)
 	}
 	
 	DDLEvent(Control, Event, a) {
@@ -82,6 +84,16 @@ Class TestGui extends GuiBase {
 	
 	Close() {
 		Exit()
+	}
+	
+	Tooltip(text){
+		ToolTip, % text
+		fn := this.removeTooltipFn
+		SetTimer, % fn, -1000
+	}
+	
+	RemoveTooltip(){
+		ToolTip
 	}
 }
 
