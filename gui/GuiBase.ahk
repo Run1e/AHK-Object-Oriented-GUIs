@@ -119,13 +119,18 @@ Class GuiBase {
 		this.Options((Enable ? "+" : "-") . "E0x10")
 	}
 	
-	Control(Command := "", Control := "", ControlParams := "") {
+	GuiControl(Control, Command, ControlParams := "") {
 		GuiControl % this.hwnd ":" Command, % Control.hwnd, % ControlParams
 	}
 	
-	ControlGet(Command := "", Control := "", ControlParams := "") {
-		GuiControlGet value, % this.hwnd ":" Command, % Control.hwnd, % ControlParams
-		return value
+	ControlGet(Control, Command, Value := "") {
+		ControlGet, Output, % Command, % Value,, % "ahk_id" Control.hwnd
+		return Output
+	}
+	
+	GuiControlGet(Control, Command, Param := "") {
+		GuiControlGet Value, % Command, % Control.hwnd, % Param
+		return Value
 	}
 	
 	Margins(x := "", y := "") {

@@ -18,9 +18,9 @@ Exit() {
 
 Class TestGui extends GuiBase {
 	Init() {
-		DDL := this.AddDropDownList("w200 AltSubmit", ["first", "second", "third"]).OnEvent(this.DDLEvent.Bind(this))
+		this.DDL := this.AddDropDownList("w200 AltSubmit", ["first", "second", "third"]).OnEvent(this.DDLEvent.Bind(this))
 		
-		DDL.ChooseString("second")
+		this.DDL.ChooseString("second")
 		
 		this.AddButton("w200", "click to change title").OnEvent(this.ChangeTitle.Bind(this))
 		this.AddButton("w200", "click to make window 500x500").OnEvent(this.500Window.Bind(this))
@@ -31,7 +31,6 @@ Class TestGui extends GuiBase {
 		
 		this.LV := this.AddListView("w200", ["Event", "Row"]).OnEvent(this.ListViewEvent.Bind(this))
 		
-		
 		this.SB := this.AddStatusBar()
 		this.SB.SetText("Statusbar text", 2)
 		
@@ -41,7 +40,7 @@ Class TestGui extends GuiBase {
 	EditEvent(Control, Event, a){
 		this.ToolTip("Edit Contents: " Control.GetText())
 	}
-	
+
 	DDLEvent(Control, Event, a) {
 		this.ToolTip("DDL Selected: " Control.GetSelected())
 		p(Event, asdf)

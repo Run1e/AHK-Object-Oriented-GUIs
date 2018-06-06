@@ -29,11 +29,15 @@
 	}
 	
 	Control(Command := "", Options := "") {
-		this.Gui.Control(Command, this, Options)
+		this.Gui.GuiControl(this, Command, Options)
 	}
 	
-	ControlGet(Command := "", Options := "") {
-		return this.Gui.ControlGet(Command, this, Options)
+	ControlGet(Command, b := "") {
+		return this.Gui.ControlGet(this, Command, b)
+	}
+	
+	GuiControlGet(Command := "", Options := "") {
+		return this.Gui.GuiControlGet(this, Command, Options)
 	}
 	
 	MoveDraw(Options) {
