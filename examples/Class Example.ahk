@@ -43,7 +43,7 @@ Class TestGui extends GuiBase {
 	}
 	
 	DDLEvent(Control, Event, a) {
-		this.ToolTip("DDL Selected: " Control.GetSelected())
+		this.ToolTip("DDL Selected: " Control.ControlGet())
 		p(Event, asdf)
 	}
 	
