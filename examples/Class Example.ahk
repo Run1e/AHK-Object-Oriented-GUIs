@@ -13,6 +13,7 @@ MyGui.Show()
 Exit() {
 	MyGui.Destroy()
 	MyGui := ""
+	ExitApp
 }
 
 Class TestGui extends GuiBase {
