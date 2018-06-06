@@ -35,10 +35,12 @@ Class GuiBase {
 	; controls
 	#Include %A_LineFile%\..\controls\ControlType.ahk
 	#Include %A_LineFile%\..\controls\ContentControlType.ahk
+	#Include %A_LineFile%\..\controls\ChoiceControlType.ahk
 	#Include %A_LineFile%\..\controls\Text.ahk
 	#Include %A_LineFile%\..\controls\Button.ahk
 	#Include %A_LineFile%\..\controls\Edit.ahk
 	#Include %A_LineFile%\..\controls\ListView.ahk
+	#Include %A_LineFile%\..\controls\DropDownList.ahk
 	#Include %A_LineFile%\..\controls\StatusBar.ahk
 	
 	static Instances := {}
@@ -65,9 +67,9 @@ Class GuiBase {
 		
 		GuiBase.Instances[this.hwnd] := this
 		
-		this.Print(this.__Class " created")
-		
 		this.Init()
+		
+		this.Print(this.__Class " created")
 	}
 	
 	__Delete() {
@@ -169,6 +171,15 @@ Class GuiBase {
 			Headers := SubStr(HeaderText, 2)
 		}
 		return this.AddControl(GuiBase.ListViewControl, Options, Headers)
+	}
+	
+	AddDropDownList(Options := "", Values := "") {
+		if IsObject(Values) {
+			for Index, Value in Values
+				ValueText .= "|" Value
+			Values := SubStr(ValueText, 2)
+		}
+		return this.AddControl(GuiBase.DropDownListControl, Options, Values)
 	}
 	
 	AddStatusBar(Options := "", Text := "") {

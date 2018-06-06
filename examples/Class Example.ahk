@@ -17,6 +17,10 @@ Exit() {
 
 Class TestGui extends GuiBase {
 	Init() {
+		DDL := this.AddDropDownList("w200 AltSubmit", ["first", "second", "third"]).OnEvent(this.DDLEvent.Bind(this))
+		
+		DDL.ChooseString("second")
+		
 		this.AddButton("w200", "click to change title").OnEvent(this.ChangeTitle.Bind(this))
 		this.AddButton("w200", "click to make window 500x500").OnEvent(this.500Window.Bind(this))
 		this.AddButton("w200", "click to center window").OnEvent(this.CenterWindow.Bind(this))
@@ -28,6 +32,10 @@ Class TestGui extends GuiBase {
 		
 		this.SB := this.AddStatusBar()
 		this.SB.SetText("Statusbar text", 2)
+	}
+	
+	DDLEvent(Control, Event, a) {
+		p(Event, asdf)
 	}
 	
 	ChangeTitle() {
@@ -63,7 +71,7 @@ Class TestGui extends GuiBase {
 		
 		; change width of all buttons
 		for Index, Control in this.Controls
-			if IsInstance(Control, GuiBase.ButtonControl, GuiBase.ListViewControl)
+			if IsInstance(Control, GuiBase.ButtonControl, GuiBase.ListViewControl, GuiBase.DropDownListControl)
 				Control.Pos.W := Width - 20
 	}
 	
@@ -94,3 +102,5 @@ rc(ptr) {
 		m("Control of type " Control.Type " and hwnd " Control.hwnd " was clicked in Gui with hwnd " Control.Gui.hwnd ".`n`nEvent params:", Info)
 	}
 */
+#Include ..\gui\controls\DropDownList.ahk
+#Include ..\gui\controls\ChoiceControlType.ahk
